@@ -1,5 +1,7 @@
-import { Component } from 'angular2/core';
+import { Component,OnInit } from 'angular2/core';
+import { Poney } from './poney';
 import { PoneyCmp } from './poney.component';
+import { PoneyService} from './poney.service';
 
 @Component({
     selector: 'ponies-cmp',
@@ -13,19 +15,26 @@ import { PoneyCmp } from './poney.component';
                    </ul>
                </div>
                <button (click)="refreshPonies()">refraichir la liste</button>`,
-    directives: [PoneyCmp]
+    directives: [PoneyCmp],
+    providers: [PoneyService]
 })
 
 
-export class PoniesCmp {
-    ponies: Array<any> = [{
-        id: 1,
-        name: "jhonny jumper"
-    },
-    {
-        id: 2,
-        name: "apres l'amour"
-    }];
+export class PoniesCmp implements OnInit {
+
+    constructor(private _poneyService: PoneyService) {}
+
+    ponies : Poney[];
+
+    getPonies() {
+        this.ponies = this._poneyService.getPonies();
+    }
+
+    ngOnInit() {
+        this.getPonies();
+        console.log(JSON.stringify(this.ponies));
+    }
+
 
     refreshPonies() {
         this.ponies = [{
