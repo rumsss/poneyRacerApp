@@ -1,0 +1,7 @@
+.idea/
+app/main.js
+app/main.js.map
+app/ponies.component.js
+app/ponies.component.js.map
+node_modules/
+
