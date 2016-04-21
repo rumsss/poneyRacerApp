@@ -1,4 +1,5 @@
 import { Component } from 'angular2/core';
+import { PoneyCmp } from './poney.component';
 
 @Component({
     selector: 'ponies-cmp',
@@ -7,11 +8,12 @@ import { Component } from 'angular2/core';
                    voici les {{ponies.length}} poneys!!
                    <ul>
                        <li *ngFor="#poney of ponies; #isEven=even" [style.color]="isEven?'green':'black'">
-                            {{poney.name}}
+                            <poney-cmp [name]="poney.name" [id]="poney.id"></poney-cmp>
                        </li>
                    </ul>
                </div>
-               <button (click)="refreshPonies()">refraichir la liste</button>`
+               <button (click)="refreshPonies()">refraichir la liste</button>`,
+    directives: [PoneyCmp]
 })
 
 
