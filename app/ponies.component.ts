@@ -6,7 +6,7 @@ import { PoneyService} from './poney.service';
 @Component({
     selector: 'ponies-cmp',
     template: `<h1> liste des poneys </h1>
-               <div *ngIf="ponies.length > 0">
+               <div *ngIf="ponies && ponies.length > 0">
                    voici les {{ponies.length}} poneys!!
                    <ul>
                        <li *ngFor="#poney of ponies; #isEven=even" [style.color]="isEven?'green':'black'">
@@ -27,12 +27,11 @@ export class PoniesCmp implements OnInit {
     ponies : Poney[];
 
     getPonies() {
-        this.ponies = this._poneyService.getPonies();
+        this._poneyService.getPoniesWithPromise().then(ponies => {this.ponies = ponies; console.log(this.ponies)});
     }
 
     ngOnInit() {
         this.getPonies();
-        console.log(JSON.stringify(this.ponies));
     }
 
 

@@ -6,4 +6,8 @@ export class PoneyService {
     getPonies() {
         return PONIES;
     }
+
+    getPoniesWithPromise() {
+        return Promise.resolve(PONIES);
+    }
 }
